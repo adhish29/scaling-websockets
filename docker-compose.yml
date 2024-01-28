@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  lb:
+    image: haproxy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+
+  ws1:
+    build: .
+    environment:
+      - APPID=server_1
+  ws2:
+    build: .
+    environment:
+      - APPID=server_2
+  ws3:
+    build: .
+    environment:
+      - APPID=server_3
+  ws4:
+    build: .
+    environment:
+      - APPID=server_4
+  redis:
+    image: redis
